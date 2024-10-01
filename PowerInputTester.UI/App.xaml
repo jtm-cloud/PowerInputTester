@@ -1,0 +1,15 @@
+﻿<Application x:Class="PowerInputTester.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PowerInputTester.UI">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PowerInputTester.UI;component/Resources/CommonAnimations.xaml"/>
+                <ResourceDictionary Source="/PowerInputTester.UI;component/Resources/ColorThemes.xaml"/>
+                <ResourceDictionary Source="/PowerInputTester.UI;component/Resources/InstrumentControlPanelStyles.xaml"/>
+                <ResourceDictionary Source="/PowerInputTester.UI;component/Resources/ViewModelAssignments.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

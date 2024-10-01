@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF6E56EB-B34A-4D18-A3EF-2A60D84A64DB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PowerInputTester.UI</RootNamespace>
+    <AssemblyName>PowerInputTester.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonHelpers.GuardClauses">
+      <HintPath>..\..\CommonHelpers\CommonHelpers.GuardClauses\bin\Debug\CommonHelpers.GuardClauses.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Abstract\IInstrumentControlContainer.cs" />
+    <Compile Include="Abstract\IInstrumentControlPanel.cs" />
+    <Compile Include="Abstract\IWindowDialogService.cs" />
+    <Compile Include="Abstract\ObjectCalculationBase.cs" />
+    <Compile Include="Abstract\ViewModelBase.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Controls\DockItemFactory.cs" />
+    <Compile Include="Controls\MenuItemFactory.cs" />
+    <Compile Include="Controls\ServiceProvider.cs" />
+    <Compile Include="Controls\UIWindowDialogService.cs" />
+    <Compile Include="Controls\UserControlViewService.cs" />
+    <Compile Include="Converters\FloatToString.cs" />
+    <Compile Include="Events\DeviceConnectRequestEventArgs.cs" />
+    <Compile Include="Events\InstallHandlerEventArgs.cs" />
+    <Compile Include="Events\InstrumentConnectedEventArgs.cs" />
+    <Compile Include="Events\InstrumentControlViewChangeEventArgs.cs" />
+    <Compile Include="Events\InstrumentSelectionEventArgs.cs" />
+    <Compile Include="Events\SubViewModelEnableChangedEventArgs.cs" />
+    <Compile Include="Events\SubViewModelEventHandler.cs" />
+    <Compile Include="Events\UIEventHandler.cs" />
+    <Compile Include="Events\UISelectionEventArgs.cs" />
+    <Compile Include="Models\ClipLevelSettingControl.cs" />
+    <Compile Include="Models\DockItem.cs" />
+    <Compile Include="Models\DropDownList.cs" />
+    <Compile Include="Models\FrequencySettingControl.cs" />
+    <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Models\VoltageSettingControl.cs" />
+    <Compile Include="Models\WaveformShapeOptionsContainer.cs" />
+    <Compile Include="Models\WaveformShapeSettingControl.cs" />
+    <Compile Include="ViewModels\DeviceSelectionViewModel.cs" />
+    <Compile Include="ViewModels\DialogWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MenuBarViewModel.cs" />
+    <Compile Include="ViewModels\Oscilloscope\ConnectionPanelViewModel.cs" />
+    <Compile Include="ViewModels\Oscilloscope\OscilloscopeControlViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\ConnectionPanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\CurrentLimitPanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\FrequencyPanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\OutputCouplingPanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\OutputModePanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\OutputStatePanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\PhasePanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\PowerSupplyControlViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\VoltagePanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\VoltageRangePanelViewModel.cs" />
+    <Compile Include="ViewModels\PowerSupply\WaveShapePanelViewModel.cs" />
+    <Compile Include="ViewModels\SideDockViewModel.cs" />
+    <Compile Include="ViewModels\WaveformShapePanelViewModel.cs" />
+    <Compile Include="Views\DeviceSelectionView.xaml.cs">
+      <DependentUpon>DeviceSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuBarView.xaml.cs">
+      <DependentUpon>MenuBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Oscilloscope\ConnectionPanelView.xaml.cs">
+      <DependentUpon>ConnectionPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Oscilloscope\OscilloscopeControlView.xaml.cs">
+      <DependentUpon>OscilloscopeControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\ConnectionPanelView.xaml.cs">
+      <DependentUpon>ConnectionPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\CurrentLimitPanelView.xaml.cs">
+      <DependentUpon>CurrentLimitPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\FrequencyPanelView.xaml.cs">
+      <DependentUpon>FrequencyPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\OutputCouplingPanelView.xaml.cs">
+      <DependentUpon>OutputCouplingPanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\OutputModePanelView.xaml.cs">
+      <DependentUpon>OutputModePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\OutputStatePanelView.xaml.cs">
+      <DependentUpon>OutputStatePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\PhasePanelView.xaml.cs">
+      <DependentUpon>PhasePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\PowerSupplyControlView.xaml.cs">
+      <DependentUpon>PowerSupplyControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\VoltagePanelView.xaml.cs">
+      <DependentUpon>VoltagePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PowerSupply\VoltageRangePanelView.xaml.cs">
+      <DependentUpon>VoltageRangePanelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SideDockView.xaml.cs">
+      <DependentUpon>SideDockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WaveformShapePanelView.xaml.cs">
+      <DependentUpon>WaveformShapePanelView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PowerInputTester.HardwareTest\PowerInputTester.HardwareTest.csproj">
+      <Project>{CD450AEF-3975-4E7B-893F-7C40ECC3944D}</Project>
+      <Name>PowerInputTester.HardwareTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PowerInputTester.Hardware\PowerInputTester.Hardware.csproj">
+      <Project>{581084a5-e533-4777-aead-a4a22463e116}</Project>
+      <Name>PowerInputTester.Hardware</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\ColorThemes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CommonAnimations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\InstrumentControlPanelStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ViewModelAssignments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeviceSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Oscilloscope\ConnectionPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Oscilloscope\OscilloscopeControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\ConnectionPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\CurrentLimitPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\FrequencyPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\OutputCouplingPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\OutputModePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\OutputStatePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\PhasePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\PowerSupplyControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\VoltagePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PowerSupply\VoltageRangePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SideDockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WaveformShapePanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

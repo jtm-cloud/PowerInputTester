@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="PowerInputTester.UI.Views.SideDockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:models="clr-namespace:PowerInputTester.UI.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                FlowDirection="LeftToRight"
+                CanHorizontallyScroll="False"
+                CanVerticallyScroll="False"
+                Background="{StaticResource LightBackgroundColor}">
+        <ItemsControl ItemsSource="{Binding Path=Items}" HorizontalAlignment="Center">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type models:DockItem}">
+                    <TextBlock Text="{Binding Path=Name}"
+                               Style="{StaticResource TextBlockStyle}"
+                               Margin="0,15,0,0">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="90"/>
+                        </TextBlock.LayoutTransform>
+                        <TextBlock.InputBindings>
+                            <MouseBinding
+                                MouseAction="LeftClick"
+                                Command="{Binding Path=SelectionCommand}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </DataTemplate>
+            </ItemsControl.Resources>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodels="clr-namespace:PowerInputTester.UI.ViewModels"
+                    xmlns:psv="clr-namespace:PowerInputTester.UI.Views.PowerSupply"
+                    xmlns:psvm="clr-namespace:PowerInputTester.UI.ViewModels.PowerSupply"
+                    xmlns:osv="clr-namespace:PowerInputTester.UI.Views.Oscilloscope"
+                    xmlns:osvm="clr-namespace:PowerInputTester.UI.ViewModels.Oscilloscope"
+                    xmlns:views="clr-namespace:PowerInputTester.UI.Views">
+
+
+    <!--#region Power Supply Data Templates -->
+
+    <DataTemplate x:Name="PowerSupplyConnectionViewTemplate"
+                  DataType="{x:Type psvm:ConnectionPanelViewModel}">
+        <psv:ConnectionPanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyCurrentLimitViewTemplate"
+                  DataType="{x:Type psvm:CurrentLimitPanelViewModel}">
+        <psv:CurrentLimitPanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyOutputStateViewTemplate"
+                  DataType="{x:Type psvm:OutputStatePanelViewModel}">
+        <psv:OutputStatePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyControlViewTemplate"
+                  DataType="{x:Type psvm:FrequencyPanelViewModel}">
+        <psv:FrequencyPanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyFrequencyViewTemplate"
+                  DataType="{x:Type psvm:PowerSupplyControlViewModel}">
+        <psv:PowerSupplyControlView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyOutputCouplingPanelViewTemplate"
+                  DataType="{x:Type psvm:OutputCouplingPanelViewModel}">
+        <psv:OutputCouplingPanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyOutputModePanelViewTemplate"
+                  DataType="{x:Type psvm:OutputModePanelViewModel}">
+        <psv:OutputModePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyPhasePanelViewTemplate"
+                  DataType="{x:Type psvm:PhasePanelViewModel}">
+            <psv:PhasePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyVoltagePanelViewTemplate"
+                  DataType="{x:Type psvm:VoltagePanelViewModel}">
+        <psv:VoltagePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="PowerSupplyVoltageRangePanelViewTemplate"
+                  DataType="{x:Type psvm:VoltageRangePanelViewModel}">
+        <psv:VoltageRangePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+    
+    <!--#endregion-->
+
+    <DataTemplate x:Name="DeviceSelectionViewTemplate"
+                  DataType="{x:Type viewmodels:DeviceSelectionViewModel}">
+        <views:DeviceSelectionView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="MainWindowViewTemplate"
+                  DataType="{x:Type viewmodels:MainWindowViewModel}">
+        <views:MainWindow DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="MenuBarViewTemplate"
+                  DataType="{x:Type viewmodels:MenuBarViewModel}">
+        <views:MenuBarView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="SideDockViewTemplate"
+                  DataType="{x:Type viewmodels:SideDockViewModel}">
+        <views:SideDockView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="WaveformShapePanelViewTemplate"
+                  DataType="{x:Type viewmodels:WaveformShapePanelViewModel}">
+        <views:WaveformShapePanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <!--#region Oscilloscope Data Templates -->
+
+    <DataTemplate x:Name="OscilloscopeConnectionViewTemplate"
+                  DataType="{x:Type osvm:ConnectionPanelViewModel}">
+        <osv:ConnectionPanelView DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Name="OscilloscopeControlViewTemplate"
+                  DataType="{x:Type osvm:OscilloscopeControlViewModel}">
+        <osv:OscilloscopeControlView DataContext="{Binding}"/>
+    </DataTemplate>
+    
+    <!--#endregion-->
+
+</ResourceDictionary>

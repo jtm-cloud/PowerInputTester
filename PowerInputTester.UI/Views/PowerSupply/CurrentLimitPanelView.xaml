@@ -1,0 +1,186 @@
+﻿<UserControl x:Class="PowerInputTester.UI.Views.PowerSupply.CurrentLimitPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PowerInputTester.UI.Views.PowerSupply"
+             xmlns:models="clr-namespace:PowerInputTester.UI.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="PrivateSlideRight" Completed="OnCompleted">
+            <DoubleAnimation
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+            From="0" To="300"
+            Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut"></SineEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid
+        x:Name="MainGrid"
+        Background="Black"
+        Margin="5,2.5"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+        Visibility="{Binding Path=Enabled, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">
+
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="GridTranslateTransform"/>
+        </Grid.RenderTransform>
+
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=DisplayOffset, Mode=OneWay}" Value="False">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{DynamicResource SlideLeft}"/>
+                        </DataTrigger.EnterActions>
+                        <DataTrigger.ExitActions>
+                            <BeginStoryboard Storyboard="{StaticResource PrivateSlideRight}"/>
+                        </DataTrigger.ExitActions>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--#region Header Label -->
+        <Label Style="{StaticResource InstrumentPanelHeaderLabelStyle}"/>
+        <!--#endregion-->
+
+        <!--#region Sub Labels -->
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" SharedSizeGroup="A"/>
+                <ColumnDefinition Width="2*" SharedSizeGroup="B"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region User Input Label -->
+            <Label
+                Grid.Column="0"
+                Style="{StaticResource InstrumentPanelLabelBaseStyle}">
+                <TextBlock
+                    Text="User Input:"
+                    TextDecorations="Underline"/>
+            </Label>
+            <!--#endregion-->
+
+            <!--#region Reading Label -->
+            <Label
+                Grid.Column="1"
+                Style="{StaticResource InstrumentPanelLabelBaseStyle}">
+                <TextBlock
+                    Text="Reading:"
+                    TextDecorations="Underline"/>
+            </Label>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+
+        <Grid
+            Grid.Row="2"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <!--Visibility="{Binding Path=Enabled, Mode=OneWay, Converter={StaticResource VisibilityConverter}}">-->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" SharedSizeGroup="A"/>
+                <ColumnDefinition Width="2*" SharedSizeGroup="B"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region RangeButtons -->
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="5,0,5,5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--#region Decrease Button -->
+                <Button
+                    Grid.Column="0"
+                    Style="{StaticResource InstrumentPanelRangeButtonStyle}"
+                    Command="{Binding Path=DecreaseCommand, Mode=OneWay}"
+                    Content="-"/>
+                <!--#endregion-->
+
+                <!--#region User Input TextBox -->
+                <TextBox x:Name="TextBoxInput"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Width="50"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="20"
+                    Foreground="Black"
+                    Background="White"
+                    Text="{Binding Path=UserInput, Mode=TwoWay}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=UserInputCommand}"
+                            Key="Enter"
+                            CommandParameter="{Binding Text, ElementName=TextBoxInput}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <!--#endregion-->
+
+                <!--#region Increase Button -->
+                <Button
+                    Grid.Column="2"
+                    Style="{StaticResource InstrumentPanelRangeButtonStyle}"
+                    Command="{Binding Path=IncreaseCommand, Mode=OneWay}"
+                    Content="+"/>
+                <!--#endregion-->
+
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Reading Label -->
+            <Label
+                Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="1"
+                Style="{StaticResource InstrumentPanelRangeReadingLabelStyle}"
+                Content="{Binding Path=Reading, Mode=OneWay}"/>
+            <!--#endregion-->
+
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

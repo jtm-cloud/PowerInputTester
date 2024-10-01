@@ -1,0 +1,261 @@
+﻿<UserControl x:Class="PowerInputTester.UI.Views.RangeButtonsPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PowerInputTester.UI.Views"
+             xmlns:models="clr-namespace:PowerInputTester.UI.Models"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="Main"
+          Grid.IsSharedSizeScope="True"
+          Background="Black"
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Center"
+          Margin="5,2.5,5,2.5">
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=Enabled}" Value="true">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource SlideLeft}"/>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Path=Enabled}" Value="false">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard Storyboard="{StaticResource SlideRight}"/>
+                        </DataTrigger.EnterActions>
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--#region Header Label -->
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
+            Grid.RowSpan="1"
+            Foreground="{StaticResource DarkThemeFontColor}"
+            Content="{Binding Path=Name}"
+            HorizontalAlignment="Left"
+            Margin="3,0,0,0"
+            VerticalAlignment="Center"
+            FontSize="14"/>
+        <!--#endregion-->
+
+        <!--#region Sub Labels -->
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" SharedSizeGroup="A"/>
+                <ColumnDefinition Width="6*" SharedSizeGroup="B"/>
+                <ColumnDefinition Width="2*" SharedSizeGroup="C"/>
+            </Grid.ColumnDefinitions>
+
+            <!--#region Channel Label -->
+            <Label
+                Grid.Column="0"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="5,0,0,0"
+                Foreground="{StaticResource DarkThemeFontColor}"
+                FontSize="12">
+                <TextBlock TextDecorations="Underline">Phase:</TextBlock>
+            </Label>
+            <!--#endregion-->
+
+            <!--#region User Input Label -->
+            <Label
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{StaticResource DarkThemeFontColor}"
+                FontSize="12">
+                <TextBlock TextDecorations="Underline">User Input</TextBlock>
+            </Label>
+            <!--#endregion-->
+
+            <!--#region Reading Label -->
+            <Label
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{StaticResource DarkThemeFontColor}"
+                FontSize="12">
+                <TextBlock TextDecorations="Underline">Reading:</TextBlock>
+            </Label>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+
+        <!--#region Range Buttons -->
+        <ItemsControl ItemsSource="{Binding Path=Options}"
+                      Grid.Row="2"
+                      Grid.Column="0"
+                      HorizontalAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid
+                        IsItemsHost="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Rows="{Binding Path=Options.Count}"
+                        Columns="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:RangeButtonsOption}">
+                    <Grid
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                        <Grid.Style>
+                            <Style TargetType="{x:Type Grid}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Enabled}" Value="true">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource SlideLeft}"/>
+                                        </DataTrigger.EnterActions>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=Enabled}" Value="false">
+                                        <DataTrigger.EnterActions>
+                                            <BeginStoryboard Storyboard="{StaticResource SlideRight}"/>
+                                        </DataTrigger.EnterActions>
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" SharedSizeGroup="A"/>
+                            <ColumnDefinition Width="6*" SharedSizeGroup="B"/>
+                            <ColumnDefinition Width="2*" SharedSizeGroup="C"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--#region Channel Label -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="1"
+                            Content="{Binding Path=Label}"
+                            FontSize="16"
+                            Foreground="{StaticResource DarkThemeFontColor}"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+                        <!--#endregion-->
+
+                        <!--#region RangeButtons -->
+                        <Grid
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="5,0,5,5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--#region Decrease Button -->
+                            <Button
+                                Grid.Column="0"
+                                Command="{Binding Path=DecreaseCommand}"
+                                HorizontalAlignment="Center"
+                                Width="22"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Background="LightGray"
+                                Content="-"
+                                FontSize="20"/>
+                            <!--#endregion-->
+
+                            <!--#region User Input TextBox -->
+                            <TextBox
+                                Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Width="50"
+                                VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                FontSize="20"
+                                Foreground="Black"
+                                Background="White"
+                                Text="{Binding Path=UserInputValue}"/>
+                            <!--#endregion-->
+
+                            <!--#region Increase Button -->
+                            <Button
+                                Grid.Column="2"
+                                Command="{Binding Path=IncreaseCommand}"
+                                HorizontalAlignment="Center"
+                                Width="22"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="Black"
+                                Background="LightGray"
+                                Content="+"
+                                FontSize="20"/>
+                            <!--#endregion-->
+
+                        </Grid>
+                        <!--#endregion-->
+
+                        <!--#region Reading Label -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="1"
+                            Content="{Binding Path=Reading}"
+                            FontSize="22"
+                            Foreground="Aqua"
+                            HorizontalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+                        <!--#endregion-->
+                        
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <!--#endregion-->
+    </Grid>
+</UserControl>

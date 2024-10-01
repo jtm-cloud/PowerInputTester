@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PowerInputTester.Hardware\PowerInputTester.Hardware.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CommonHelpers.GuardClauses">
+      <HintPath>..\..\CommonHelpers\CommonHelpers.GuardClauses\bin\Debug\CommonHelpers.GuardClauses.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
